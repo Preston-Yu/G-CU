@@ -1,6 +1,40 @@
 # GCU-Code
 
-## Deifine
+## System Configuration
+All system configuration variables except for definitions are in the GCU.ino file.
+
+### Device Setting
+```cpp
+// Device Parameters
+const unsigned char device_number = 0x01;
+const unsigned char device_frequency = 10;
+// #define sample_delayms 100
+
+// Sensor Numbers
+const unsigned char sensors_rows_num = 1;
+const unsigned char sensors_columns_num = 1;
+```
+
+### WiFi
+```cpp
+const char* SSID       = "GCU-wifi";
+const char* password   = "12345678";
+const char* SeverIP = "192.168.1.101";
+const uint16_t port = 1337;
+```
+
+### Flag
+```cpp
+// Data Format Function
+const bool start_flag = 1;
+const bool device_num_flag = 1;
+const bool sensors_num_flag = 1;
+const bool timestamp_flag = 1;
+const bool data_validation_flag = 1;
+const bool end_flag = 1;
+```
+
+### Deifine
 
 The definition defines many hardware addresses and port mappings. 
 
@@ -18,15 +52,4 @@ Without changing the PCB, there is no need to change the defined content.
 #define BQ32002_DATE_Register 0x04
 #define BQ32002_MONTH_Register 0x05
 #define BQ32002_YEARS_Register 0x06
-```
-
-## Flag
-```cpp
-// Data Format Function
-const bool start_flag = 1;
-const bool device_num_flag = 1;
-const bool sensors_num_flag = 1;
-const bool timestamp_flag = 1;
-const bool data_validation_flag = 1;
-const bool end_flag = 1;
 ```
