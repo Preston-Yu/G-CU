@@ -1,8 +1,7 @@
 # G-CU
 ## Contents
  - [Working Status](#working_status)
-
-## 
+ - [Data Format](#data_format)
 
 ## Working Status
 
@@ -20,3 +19,8 @@
 |              | Cyan (Blink 3 Times)           | Unable to set RTC from NTP Server / Setting RTC using extern Chip(BQ32002)   |
 |              | Yellow                         | Waiting for connect to TCP Server   |
 |              | Green                          | Transferring data   |
+
+## Data Format
+
+| START | DN | SN | TIME | TIMEMS | S1 | S2 | ... | DV | END |
+| START | DN | SN | TIME | TIMEMS | S1 | S2 | ... | DV | END |
