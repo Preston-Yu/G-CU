@@ -29,8 +29,8 @@
   <th>SN</th>
   <th colspan="4">TIME</th>
   <th colspan="2">TIMEMS</th>
-  <th colspan="2">S1</th>
-  <th colspan="2">S2</th>
+  <th colspan="2">S 1</th>
+  <th colspan="2">S 2</th>
  </tr>
  <tr>
   <td>0x5a</td>
@@ -54,12 +54,23 @@
   <th colspan="2">END</th>
  </tr>
  <tr>
-  <td  colspan="10" style="text-align: center;">...</td>
+  <td colspan="10" align="center">...</td>
   <td>0x0b</td>
   <td>0xb8</td>
   <td>0xa5</td>
-  <td><0xa5</td>
+  <td>0xa5</td>
  </tr>
 </table>
+
+| Field Name   | Size (Bytes) | Description                                         |
+| ------------ | ------------ | -------------------------------------------------- |
+| START        | 2            | Two 0x5a identifying the packet    |
+| DN           | 1            | Device NO.    |
+| SN           | 1            | Total number of sensors      |
+| TIME         | 4            | Unix Time   |
+| TIMEMS       | 2            | Million Seconds     |
+| S ***x***    | 2            | Value of Sensor ***x***    |
+| DV           | 2            | Data Validation (CheckSum)  |
+| END          | 2            | Two 0xa5 ending the packet     |
 
 
