@@ -1,2 +1,5 @@
 # GCU-Code
-## Changing
+
+## Deifine
+
+## Flag
