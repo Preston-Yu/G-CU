@@ -1,7 +1,7 @@
 # GCU-Code
 
 ## System Configuration
-All system configuration variables except for definitions are in the GCU.ino file.
+All system configuration variables except for definitions are in the [GCU.ino](v 0.0/GCU.ino) file.
 
 ### Device Setting
 ```cpp
