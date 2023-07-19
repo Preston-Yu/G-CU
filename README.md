@@ -2,6 +2,7 @@
 ## Contents
  - [Working Status](#working_status)
  - [Data Format](#data_format)
+ - [Attention](#attention)
 
 ## Working Status
 
@@ -76,5 +77,10 @@
 | END          | 2            | Two 0xa5 ending the packet     |
 
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
+
+## Attention
+Due to issues such as hardware design, the following matters need to be noted.
+ - GPIO38 (In the middle of U11) cannot be used.
+ - Switch status is negetive.
 
 
