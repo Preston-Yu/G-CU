@@ -22,5 +22,15 @@
 
 ## Data Format
 
-| START | DN | SN | TIME | TIMEMS | S1 | S2 | ... | DV | END |
-| START | DN | SN | TIME | TIMEMS | S1 | S2 | ... | DV | END |
+| 111 | DN | SN | TIME | TIMEMS | S1 | S2 | ... | DV | <th colspan="2">Connected</th> |
+| ----- | -- | -- | ---- | ----- | -- | -- | --- | -- | --- |
+| ----- | -- | -- | ---- | ----- | -- | -- | --- | -- | --- |
+
+
+| Indicator         | Status      | Meaning                 |
+| ----------------- | ----------- | ----------------------- |
+| Power             | Green       | System is powered on    |
+| Network           | <td colspan="2">Connected</td>  |
+| Battery           | Green       | Battery level is high   |
+| Error             | Red         | System error occurred   |
+
