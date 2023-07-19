@@ -22,6 +22,7 @@
 
 ## Data Format
 
+
 <table>
  <tr>
   <th colspan="2">START</th>
@@ -62,6 +63,7 @@
  </tr>
 </table>
 
+### Fields of the Data Packet
 | Field Name   | Size (Bytes) | Description                                         |
 | ------------ | ------------ | -------------------------------------------------- |
 | START        | 2            | Two 0x5a identifying the packet    |
@@ -72,5 +74,7 @@
 | S ***x***    | 2            | Value of Sensor ***x***    |
 | DV           | 2            | Data Validation (CheckSum)  |
 | END          | 2            | Two 0xa5 ending the packet     |
+
+\* The packet format can be customized by [changing the value of the flag](Arduino/README.md).
 
 
