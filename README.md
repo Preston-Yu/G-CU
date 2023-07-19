@@ -75,6 +75,6 @@
 | DV           | 2            | Data Validation (CheckSum)  |
 | END          | 2            | Two 0xa5 ending the packet     |
 
-\* The packet format can be customized by [changing the value of the flag](Arduino/README.md).
+\* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
 
 
