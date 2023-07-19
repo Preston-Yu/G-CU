@@ -1,7 +1,7 @@
 #include "esp32-hal-rgb-led.h"
 #include "GCU.h"
 
-//LED
+//LED Using GPIO38
 void neopixelWrite38(uint8_t red_val, uint8_t green_val, uint8_t blue_val){
   rmt_data_t led_data[24];
   static rmt_obj_t* rmt_send = NULL;
@@ -216,7 +216,7 @@ bool write_tm_to_bq32002(struct tm _timeinfo){
 
 
 struct tm read_tm_from_bq32002(){
-  // struct tm _timeinfo;
+
   struct bq32002_tm _bq32002tm;
 
   Wire.beginTransmission(BQ32002_I2C_ADDRESS);
@@ -224,49 +224,42 @@ struct tm read_tm_from_bq32002(){
   Wire.endTransmission();
   Wire.requestFrom(BQ32002_I2C_ADDRESS, 1);
   _bq32002tm.secs = Wire.read();
-  // Serial.println(bq32002_timeinfo.secs, BIN);
 
   Wire.beginTransmission(BQ32002_I2C_ADDRESS);
   Wire.write(BQ32002_MINUTES_Register); //Set pointer to register 0 (seconds)
   Wire.endTransmission();
   Wire.requestFrom(BQ32002_I2C_ADDRESS, 1);
   _bq32002tm.mins = Wire.read();
-  // Serial.println(bq32002_timeinfo.secs, BIN);
 
   Wire.beginTransmission(BQ32002_I2C_ADDRESS);
   Wire.write(BQ32002_CENT_HOURS_Register); //Set pointer to register 0 (seconds)
   Wire.endTransmission();
   Wire.requestFrom(BQ32002_I2C_ADDRESS, 1);
   _bq32002tm.cent_hours = Wire.read();
-  // Serial.println(bq32002_timeinfo.secs, BIN);
 
   Wire.beginTransmission(BQ32002_I2C_ADDRESS);
   Wire.write(BQ32002_DAY_Register); //Set pointer to register 0 (seconds)
   Wire.endTransmission();
   Wire.requestFrom(BQ32002_I2C_ADDRESS, 1);
   _bq32002tm.day = Wire.read();
-  // Serial.println(bq32002_timeinfo.secs, BIN);
 
   Wire.beginTransmission(BQ32002_I2C_ADDRESS);
   Wire.write(BQ32002_DATE_Register); //Set pointer to register 0 (seconds)
   Wire.endTransmission();
   Wire.requestFrom(BQ32002_I2C_ADDRESS, 1);
   _bq32002tm.date = Wire.read();
-  // Serial.println(bq32002_timeinfo.secs, BIN);
 
   Wire.beginTransmission(BQ32002_I2C_ADDRESS);
   Wire.write(BQ32002_MONTH_Register); //Set pointer to register 0 (seconds)
   Wire.endTransmission();
   Wire.requestFrom(BQ32002_I2C_ADDRESS, 1);
   _bq32002tm.month = Wire.read();
-  // Serial.println(bq32002_timeinfo.secs, BIN);
 
   Wire.beginTransmission(BQ32002_I2C_ADDRESS);
   Wire.write(BQ32002_YEARS_Register); //Set pointer to register 0 (seconds)
   Wire.endTransmission();
   Wire.requestFrom(BQ32002_I2C_ADDRESS, 1);
   _bq32002tm.years = Wire.read();
-  // Serial.println(bq32002_timeinfo.secs, BIN);
 
   return bq32002tm_to_tm(_bq32002tm);
 }
@@ -304,9 +297,6 @@ void data_receive(){
     }
   }
   
-
-
-    // read the analog / millivolts value for pin 2:
   for(uint8_t i = 0; i < sensors_rows_num; i++){
     for(uint8_t j = 0; j < sensors_columns_num; j++){
       pinMode(SelectIO[j],OUTPUT);
@@ -333,43 +323,5 @@ void data_receive(){
   data_p -= (sensors_num + data_validation_flag) * 2 + timestamp_flag * 6;
 
   client.write(data,data_num);
-
-    // This will send a request to the server
-    //uncomment this line to send an arbitrary string to the server
-    //client.print("Send this data to the server");
-    //uncomment this line to send a basic document request to the server sensor_rows_num*sensor_columns_num+data_validation_flag
- /* for(int i = 0;i < 10; i++){
-    client.write(test[i]);
-  }*/
-  
-//  Serial.println("Closing connection.");
-//  client.stop();
-
-  
-/*
-  int maxloops = 0;
-
-  //wait for the server's reply to become available
-  while (!client.available() && maxloops < 1000)
-  {
-    maxloops++;
-    delay(1); //delay 1 msec
-  }
-  if (client.available() > 0)
-  {
-    //read back one line from the server
-    String line = client.readStringUntil('\r');
-    Serial.println(line);
-  }
-  else
-  {
-    Serial.println("client.available() timed out ");
-  }
-
-    Serial.println("Closing connection.");
-    client.stop();
-
-    Serial.println("Waiting 5 seconds before restarting...");
-    delay(5000);*/
 }
 

@@ -44,7 +44,7 @@ const int analogReadIO[]={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 const int SelectIO[]={20, 21, 35, 36, 37, 39, 40, 41, 42, 45};
 
 
-// Data Array Size = (start_flag + sensors_num  + data_validation_flag +end_flag ) * 2 + device_num_flag + sensors_num_flag
+// Data Array Size = (start_flag + sensors_num  + data_validation_flag +end_flag ) * 2 + device_num_flag + sensors_num_flag + timestamp_flag * 6
 const int data_num = (start_flag + sensors_num  + data_validation_flag +end_flag ) * 2 + device_num_flag + sensors_num_flag + timestamp_flag * 6;
 unsigned char data[data_num];
 unsigned char * data_p = data;
@@ -136,7 +136,7 @@ void setup() {
     data[data_num - 1] = 0xa5;
   }
 
-
+  //Enable Timer Interrupt
   data_receiver.attach_ms(1000/device_frequency, data_receive);
 
 }

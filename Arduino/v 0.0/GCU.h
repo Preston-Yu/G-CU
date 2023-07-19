@@ -1,6 +1,7 @@
 #ifndef __GCU_H__
 #define __GCU_H__
 
+
 #include "esp32-hal.h"
 #include <ESP32Time.h>
 #include "time.h"
@@ -10,6 +11,9 @@
 #include <Ticker.h>
 #include <Wire.h>
 
+
+//System Define
+//! DONT NEED CHANGE
 #define GCU_SDA 48
 #define GCU_SCL 47
 #define BQ32002_I2C_ADDRESS 0x68
@@ -22,6 +26,8 @@
 #define BQ32002_MONTH_Register 0x05
 #define BQ32002_YEARS_Register 0x06
 
+
+//BQ32002 Chip Time Register Struct
 struct bq32002_tm
 {
   byte secs;
@@ -33,9 +39,10 @@ struct bq32002_tm
   byte years;
 };
 
+//External Variable Declaration
 // Device Parameters
 extern const unsigned char device_number;
-// #define sample_delayms 100
+extern const unsigned char device_frequency;
 
 // Sensor Numbers
 extern const unsigned char sensors_rows_num;
@@ -52,7 +59,6 @@ extern const bool end_flag;
 
 extern const int data_num;
 
-
 //RTC
 extern ESP32Time rtc;
 extern const char* ntpServer1;
@@ -61,8 +67,6 @@ extern const int  gmtOffset_sec;
 extern const int  daylightOffset_sec;
 
 // WiFi Parameters
-// #define SSID "GCU-wifi"
-// #define password "12345678"
 extern const char* SSID;
 extern const char* password;
 extern const char* SeverIP;
@@ -78,7 +82,7 @@ extern unsigned char * data_p;
 extern uint32_t check_sum;
 
 
-
+//Function Declaration
 void neopixelWrite38(uint8_t red_val, uint8_t green_val, uint8_t blue_val);
 
 bool init_RTC_from_net();
