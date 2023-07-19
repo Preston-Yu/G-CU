@@ -1,5 +1,5 @@
 # G-CU PCB
-## v 0.0 -> v 0.1
+## v 0.0 -> v 0.1 (Direct correction on board)
 - R2 has been removed.
 - CP2102 Vregin has been connected to ESP_3V3.
 - Q1, Q2 has been removed.
