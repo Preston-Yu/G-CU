@@ -3,6 +3,7 @@
 
 
 #include "esp32-hal.h"
+#include "esp32-hal-rgb-led.h"
 #include <ESP32Time.h>
 #include "time.h"
 #include "sntp.h"

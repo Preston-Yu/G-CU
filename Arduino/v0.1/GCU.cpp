@@ -1,4 +1,3 @@
-#include "esp32-hal-rgb-led.h"
 #include "GCU.h"
 
 //LED Using GPIO38
