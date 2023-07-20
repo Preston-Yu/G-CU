@@ -46,7 +46,7 @@ struct bq32002_tm
 
 //External Variable Declaration
 // Device Parameters
-extern uint32_t device_number;
+extern unsigned char device_number;
 extern const unsigned char device_frequency;
 
 // Sensor Numbers
