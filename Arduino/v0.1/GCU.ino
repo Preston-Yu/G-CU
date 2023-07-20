@@ -3,7 +3,7 @@
 
 // Device Parameters
 // If the device number is set to the default value of 0x00, the device will automatically convert the chip ID to the device number
-uint32_t device_number = 0x00; 
+unsigned char device_number = 0x00; 
 const unsigned char device_frequency = 50;
 // #define sample_delayms 100
 
