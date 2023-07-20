@@ -2,13 +2,14 @@
 
 
 // Device Parameters
-const unsigned char device_number = 0x02;
+// If the device number is set to the default value of 0x00, the device will automatically convert the chip ID to the device number
+uint32_t device_number = 0x00; 
 const unsigned char device_frequency = 50;
 // #define sample_delayms 100
 
 // Sensor Numbers
-const unsigned char sensors_rows_num = 1;
-const unsigned char sensors_columns_num = 1;
+const unsigned char sensors_rows_num = 11;
+const unsigned char sensors_columns_num = 10;
 
 // Data Format Function
 const bool start_flag = 1;
@@ -121,8 +122,18 @@ void setup() {
   }
 
   if(device_num_flag){
-    data[2] = device_number;
-    data_p += 1;
+    if(!device_number){
+      for(int i=0; i<17; i=i+8) {
+	    data[2] |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;
+      }
+      Serial.print("Chip ID: "); Serial.println(data[2]);
+      data_p += 1;
+    }
+    else{
+      data[2] = device_number;
+      data_p += 1;
+    }
+    
   }
 
   if(sensors_num_flag){
@@ -145,7 +156,7 @@ void setup() {
 void loop() {
 
   Serial.print(".");
-  delay(10);
+  delay(100);
 
 }
 

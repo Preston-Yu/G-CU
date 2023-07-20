@@ -67,7 +67,7 @@ bool init_RTC_from_net(){
     Serial.println("No time available (yet)");
     return false;
     }
-    Serial.print(".");
+    // Serial.print(".");
   }
   while(timeinfo2.tm_sec==timeinfo1.tm_sec);
   //Serial.println(&timeinfo2, "%A, %B %d %Y %H:%M:%S");
@@ -92,11 +92,11 @@ bool init_RTC_from_bq32002(){
     RTC_error();
   }
   timeinfo1 = read_tm_from_bq32002();
-  Serial.println(&timeinfo1, "%A, %B %d %Y %H:%M:%S");
+  // Serial.println(&timeinfo1, "%A, %B %d %Y %H:%M:%S");
   do{
     timeinfo2 = read_tm_from_bq32002();
-    Serial.print(".");
-    Serial.println(&timeinfo2, "%A, %B %d %Y %H:%M:%S");
+    // Serial.print(".");
+    // Serial.println(&timeinfo2, "%A, %B %d %Y %H:%M:%S");
   }
   while(timeinfo2.tm_sec==timeinfo1.tm_sec);
   epochTime = mktime(&timeinfo2);
