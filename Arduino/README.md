@@ -4,7 +4,7 @@
 [ESP32Time](https://www.arduinolibraries.info/libraries/esp32-time) By fbiego v2.0.2
 
 ## System Configuration
-All system configuration variables except for definitions are in the [GCU.ino](v0.0/GCU.ino) file.
+All system configuration variables except for definitions are in the [GCU.ino](v0.1/GCU.ino) file.
 
 ### Device Setting
 ```cpp
