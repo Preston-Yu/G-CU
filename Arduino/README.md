@@ -24,6 +24,7 @@ const char* SSID       = "GCU-wifi";
 const char* password   = "12345678";
 const char* SeverIP = "192.168.1.101";
 const uint16_t port = 1337;
+const bool TCP_UDP_Flag = UDP;
 ```
 
 ### Flag
