@@ -10,6 +10,7 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiMulti.h>
+#include <ArduinoOTA.h>
 #include <WiFiUdp.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
@@ -79,6 +80,7 @@ extern const int  gmtOffset_sec;
 extern const int  daylightOffset_sec;
 
 // WiFi Parameters
+extern const char* host;
 extern const char* SSID;
 extern const char* password;
 extern const char* SeverIP;
@@ -96,7 +98,13 @@ extern unsigned char * data_p;
 extern uint32_t check_sum;
 
 
+extern WebServer server;
+
+
 //Function Declaration
+void basic_OTA();
+void OTA_web_updater();
+
 void neopixelWrite38(uint8_t red_val, uint8_t green_val, uint8_t blue_val);
 
 bool init_RTC_from_net();

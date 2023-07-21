@@ -22,7 +22,7 @@ const bool end_flag = 1;
 // WiFi Parameters
 // #define SSID "GCU-wifi"
 // #define password "12345678"
-const char* host = "esp32";
+const char* host = "esp32s3";
 const char* SSID       = "GCU-wifi";
 const char* password   = "12345678";
 const char* SeverIP = "192.168.1.101";
@@ -70,10 +70,6 @@ void setup() {
   neopixelWrite38(0,0,0); // Off / black
   delay(300);
   
-  
-  for(int i=0;i < sizeof(SelectIO)/sizeof(SelectIO[0]);i++){
-    pinMode(SelectIO[i],INPUT);
-  }
 
   Serial.begin(115200);
   delay(10);
@@ -100,55 +96,11 @@ void setup() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 
+  basic_OTA();
+  OTA_web_updater();
   delay(500);
 
-  /*use mdns for host name resolution*/
-  if (!MDNS.begin(host)) { //http://esp32.local
-    Serial.println("Error setting up MDNS responder!");
-    while (1) {
-      delay(1000);
-    }
-  }
-  Serial.println("mDNS responder started");
-  /*return index page which is stored in serverIndex */
-  server.on("/", HTTP_GET, []() {
-    server.sendHeader("Connection", "close");
-    server.send(200, "text/html", loginIndex);
-  });
-  server.on("/serverIndex", HTTP_GET, []() {
-    server.sendHeader("Connection", "close");
-    server.send(200, "text/html", serverIndex);
-  });
-  /*handling uploading firmware file */
-  server.on("/update", HTTP_POST, []() {
-    server.sendHeader("Connection", "close");
-    server.send(200, "text/plain", (Update.hasError()) ? "FAIL" : "OK");
-    ESP.restart();
-  }, []() {
-    HTTPUpload& upload = server.upload();
-    if (upload.status == UPLOAD_FILE_START) {
-      Serial.printf("Update: %s\n", upload.filename.c_str());
-      if (!Update.begin(UPDATE_SIZE_UNKNOWN)) { //start with max available size
-        Update.printError(Serial);
-      }
-    } else if (upload.status == UPLOAD_FILE_WRITE) {
-      /* flashing firmware to ESP*/
-      if (Update.write(upload.buf, upload.currentSize) != upload.currentSize) {
-        Update.printError(Serial);
-      }
-    } else if (upload.status == UPLOAD_FILE_END) {
-      if (Update.end(true)) { //true to set the size to the current progress
-        Serial.printf("Update Success: %u\nRebooting...\n", upload.totalSize);
-      } else {
-        Update.printError(Serial);
-      }
-    }
-  });
-  server.begin();
-
-
   neopixelWrite38(0,RGB_BRIGHTNESS-50,RGB_BRIGHTNESS-50);
-
 
   if(!init_RTC_from_net()){
     for(int i = 0; i < 3; i++){
@@ -194,6 +146,10 @@ void setup() {
     data[data_num - 1] = 0xa5;
   }
 
+  for(int i=0;i < sizeof(SelectIO)/sizeof(SelectIO[0]);i++){
+    pinMode(SelectIO[i],INPUT);
+  }
+
   //Enable Timer Interrupt
   neopixelWrite38(RGB_BRIGHTNESS-50,RGB_BRIGHTNESS-50,0);
   data_receiver.attach_ms(1000/device_frequency, data_receive);
@@ -201,6 +157,7 @@ void setup() {
 }
 
 void loop() {
+  ArduinoOTA.handle();
   server.handleClient();
 }
 
