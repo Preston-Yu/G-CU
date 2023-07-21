@@ -18,7 +18,7 @@
 |              | Red (Blink)                    | Unable to set RTC     |
 |              | Cyan                           | Setting RTC using NTP Server    |
 |              | Cyan (Blink 3 Times)           | Unable to set RTC from NTP Server / Setting RTC using extern Chip(BQ32002)   |
-|              | Yellow                         | [TCP Mode]Waiting for connect to TCP Server / [TCP Mode/UDP Mode] Data acquisition function is abnormal  |
+|              | Yellow                         | Waitting for transfer data / [TCP Mode]Waiting for connect to TCP Server |
 |              | Green                          | Transferring data   |
 
 ## Data Format
