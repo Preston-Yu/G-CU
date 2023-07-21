@@ -1,6 +1,11 @@
 # GCU-Code
-## Arduino Library
+## Update History
+### Version 0.2
+- Add OTA Function
+### Version 0.1
+- Add UDP Function
 
+## Arduino Library
 [ESP32Time](https://www.arduinolibraries.info/libraries/esp32-time) By fbiego v2.0.2
 
 ## System Configuration
