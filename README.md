@@ -145,7 +145,9 @@
 ## Attention
 ### Only For board v1.0
 Due to I2C Address Conflict, the following matters need to be noted.
- - If you want to use IMU Sensor, board v1.0 must update to [v1.1](PCB%20Design/README.md) or remove the RTC chip.
+ - If you want to use IMU Sensor, board v1.0 must update to [board v1.1](PCB%20Design/README.md) （Contact YU） or remove the RTC chip.
+ - If you choose to remove the RTC chip, you need to disable the RTC Function from [code v1.0](Arduino/README.md).
+ - If you want to use the board v1.0(Don't use IMU Sensor), you can use the [code v0.2](Arduino/v0.2/README.md).
 
 ### Only For board v0.0 or v0.1
 Due to issues such as hardware design, the following matters need to be noted.
