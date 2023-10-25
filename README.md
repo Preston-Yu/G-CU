@@ -1,4 +1,4 @@
-# G-CU
+# G-CU Version 1
 ## Contents
  - [Working Status](#working_status)
  - [Data Format](#data_format)
