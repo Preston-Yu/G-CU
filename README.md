@@ -1,7 +1,7 @@
 # G-CU
 ## Contents
- - [Working Status](#working_status)
- - [Data Format](#data_format)
+ - [Working Status](#working-status)
+ - [Data Format](#data-format)
  - [Attention](#attention)
 
 ## Working Status
