@@ -1,5 +1,8 @@
 # GCU-Code
 ## Update History
+### Version 1.0 
+- Add IMU Sensor Data Measurement(Must Use Board v1.0 or above)
+- Remove DV from Data Format
 ### Version 0.2 ([Details](v0.2/README.md))
 - Add OTA Function
 - Optimized file structure
