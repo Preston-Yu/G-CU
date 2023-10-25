@@ -33,8 +33,6 @@
   <th colspan="4">TIME</th>
   <th colspan="2">TIMEMS</th>
   <th colspan="2">S 1</th>
-  <th colspan="2">S 2</th>
-  <th colspan="2">S 3</th>
  </tr>
  <tr>
   <td>0x5a</td>
@@ -49,17 +47,12 @@
   <td>0xf4</td>
   <td>0x30</td>
   <td>0x8e</td>
-  <td>0x31</td>
-  <td>0x66</td>
-  <td>0x31</td>
-  <td>0x66</td>
  </tr>
  <tr>
-  <th colspan="2">S 4</th>
+  <th colspan="2">S 2</th>
   <th colspan="2">S ...</th>
   <th colspan="4">Magnetometer_x</th>
   <th colspan="4">Magnetometer_y</th>
-  <th colspan="4">Magnetometer_z</th>
  <tr>
   <td>0x31</td>
   <td>0x66</td>
@@ -72,24 +65,57 @@
   <td>0xb8</td>
   <td>0xa5</td>
   <td>0xa5</td>
+  
+  
+ </tr>
+ <tr>
+  <th colspan="4">Magnetometer_z</th>
+  <th colspan="4">Gyroscope_x</th>
+  <th colspan="4">Gyroscope_y</th>
+ </tr>
+ <tr>
   <td>0x0b</td>
   <td>0xb8</td>
   <td>0xa5</td>
   <td>0xa5</td>
-  
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
  </tr>
  <tr>
-  <th colspan="4">Gyroscope_x</th>
-  <th colspan="4">Gyroscope_y</th>
   <th colspan="4">Gyroscope_z</th>
   <th colspan="4">Accelerometer_x</th>
+  <th colspan="4">Accelerometer_y</th>
  </tr>
  <tr>
-  <th colspan="4">Accelerometer_y</th>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+ </tr>
+ <tr>
   <th colspan="4">Accelerometer_z</th>
   <th colspan="2">DV</th>
   <th colspan="2">END</th>
-  
+ </tr>
+ <tr>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
   <td>0x0b</td>
   <td>0xb8</td>
   <td>0xa5</td>
@@ -98,16 +124,19 @@
 </table>
 
 ### Fields of the Data Packet
-| Field Name   | Size (Bytes) | Description                                         |
-| ------------ | ------------ | -------------------------------------------------- |
-| START        | 2            | Two 0x5a identifying the packet    |
-| DN           | 1            | Device NO.    |
-| SN           | 1            | Total number of sensors      |
-| TIME         | 4            | Unix Time   |
-| TIMEMS       | 2            | Million Seconds     |
-| S ***x***    | 2            | Value of Sensor ***x***    |
-| DV           | 2            | Data Validation (CheckSum)  |
-| END          | 2            | Two 0xa5 ending the packet     |
+| Field Name        | Size (Bytes) | Description                                         |
+| ----------------- | ------------ | -------------------------------------------------- |
+| START             | 2            | Two 0x5a identifying the packet    |
+| DN                | 1            | Device NO.    |
+| SN                | 1            | Total number of sensors      |
+| TIME              | 4            | Unix Time   |
+| TIMEMS            | 2            | Million Seconds     |
+| S ***x***         | 2            | Value of the Pressure Sensor ***x***    |
+| Magnetometer_xyz  | 12           | Value of the Magnetometer_xyz(Float)  |
+| Gyroscope_xyz     | 12           | Value of the Gyroscope_xyz(Float)  |
+| Accelerometer_xyz | 12           | Value of the Accelerometer_xyz(Float)  |
+| DV                | 2            | Data Validation of the Pressure Sensor (CheckSum)  |
+| END               | 2            | Two 0xa5 ending the packet   |
 
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
 
