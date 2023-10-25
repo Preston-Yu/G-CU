@@ -1,4 +1,4 @@
-# G-CU Version 1
+# G-CU Version 2
 ## Contents
  - [Working Status](#working_status)
  - [Data Format](#data_format)
@@ -13,7 +13,8 @@
 | LED2         | Green                          | Battery is charging      |
 |              | Off                            | Battery is fully charged / Battery not installed   |
 | RGB LED (U6) | Off                            | System is powered off / System is initializing     |
-|              | Red-Green-Blue (Cycle)         | System is resetting / Low Battery     |
+|              | White                          | Unable to Init the IMU Sensor |
+|              | Red-Green-Blue (Cycle)         | System is starting / Low Battery     |
 |              | Red                            | Connecting to WiFi / Unable to connect to WiFi  |
 |              | Red (Blink)                    | Unable to set RTC     |
 |              | Cyan                           | Setting RTC using NTP Server    |
@@ -33,6 +34,7 @@
   <th colspan="2">TIMEMS</th>
   <th colspan="2">S 1</th>
   <th colspan="2">S 2</th>
+  <th colspan="2">S 3</th>
  </tr>
  <tr>
   <td>0x5a</td>
@@ -49,14 +51,45 @@
   <td>0x8e</td>
   <td>0x31</td>
   <td>0x66</td>
+  <td>0x31</td>
+  <td>0x66</td>
  </tr>
  <tr>
-  <th colspan="10">...</th>
+  <th colspan="2">S 4</th>
+  <th colspan="2">S ...</th>
+  <th colspan="4">Magnetometer_x</th>
+  <th colspan="4">Magnetometer_y</th>
+  <th colspan="4">Magnetometer_z</th>
+ <tr>
+  <td>0x31</td>
+  <td>0x66</td>
+  <td colspan="2" align="center">...</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  
+ </tr>
+ <tr>
+  <th colspan="4">Gyroscope_x</th>
+  <th colspan="4">Gyroscope_y</th>
+  <th colspan="4">Gyroscope_z</th>
+  <th colspan="4">Accelerometer_x</th>
+ </tr>
+ <tr>
+  <th colspan="4">Accelerometer_y</th>
+  <th colspan="4">Accelerometer_z</th>
   <th colspan="2">DV</th>
   <th colspan="2">END</th>
- </tr>
- <tr>
-  <td colspan="10" align="center">...</td>
+  
   <td>0x0b</td>
   <td>0xb8</td>
   <td>0xa5</td>
