@@ -22,6 +22,8 @@
 |              | Yellow                         | Waitting for transfer data / [TCP Mode]Waiting for connect to TCP Server |
 |              | Green                          | Transferring data   |
 
+
+
 ## Data Format
 
 
@@ -141,7 +143,7 @@
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
 
 ## Attention
-Due to issues such as hardware design, the following matters need to be noted.
+Due to issues such as hardware design, the following matters need to be noted.(Only For board v1.0 or v1.1)
  - GPIO38 (In the middle of U11) cannot be used.
  - Switch status is negetive.
 
