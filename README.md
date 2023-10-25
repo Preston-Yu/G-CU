@@ -128,14 +128,14 @@
 | ----------------- | ------------ | -------------------------------------------------- |
 | START             | 2            | Two 0x5a identifying the packet    |
 | DN                | 1            | Device NO.    |
-| SN                | 1            | Total number of sensors      |
+| SN                | 1            | Total number of the Pressure Sensors      |
 | TIME              | 4            | Unix Time   |
 | TIMEMS            | 2            | Million Seconds     |
-| S ***x***         | 2            | Value of the Pressure Sensor ***x***    |
+| S ***x***         | 2            | Value of the Pressure Sensor NO. ***x***    |
 | Magnetometer_xyz  | 12           | Value of the Magnetometer_xyz(Float)  |
 | Gyroscope_xyz     | 12           | Value of the Gyroscope_xyz(Float)  |
 | Accelerometer_xyz | 12           | Value of the Accelerometer_xyz(Float)  |
-| DV                | 2            | Data Validation of the Pressure Sensor (CheckSum)  |
+| DV                | 2            | Data Validation of the Pressure Sensors (CheckSum)  |
 | END               | 2            | Two 0xa5 ending the packet   |
 
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
