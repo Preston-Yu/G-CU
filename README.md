@@ -34,7 +34,7 @@
   <th>SN</th>
   <th colspan="4">TIME</th>
   <th colspan="2">TIMEMS</th>
-  <th colspan="2">S 1</th>
+  <th colspan="2">S_1</th>
  </tr>
  <tr>
   <td>0x5a</td>
@@ -51,8 +51,8 @@
   <td>0x8e</td>
  </tr>
  <tr>
-  <th colspan="2">S 2</th>
-  <th colspan="2">S ...</th>
+  <th colspan="2">S_2</th>
+  <th colspan="2">S_...</th>
   <th colspan="4">Magnetometer_x</th>
   <th colspan="4">Magnetometer_y</th>
  <tr>
@@ -133,7 +133,7 @@
 | SN                | 1            | Total number of the Pressure Sensors      |
 | TIME              | 4            | Unix Time   |
 | TIMEMS            | 2            | Million Seconds     |
-| S ***x***         | 2            | Value of the Pressure Sensor NO. ***x***    |
+| S_***x***         | 2            | Value of the Pressure Sensor NO. ***x***    |
 | Magnetometer_xyz  | 12           | Value of the Magnetometer_xyz(Float)  |
 | Gyroscope_xyz     | 12           | Value of the Gyroscope_xyz(Float)  |
 | Accelerometer_xyz | 12           | Value of the Accelerometer_xyz(Float)  |
