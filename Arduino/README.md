@@ -1,7 +1,7 @@
 # GCU-Code
 ## Update History
 ### Version 1.0 
-- Add IMU Sensor Data Measurement (Must Use Board v1.1(including v1.0.R) or above)
+- Add IMU Sensor Data Measurement (Must using Board v1.1(including v1.0.R) or above)
 ### Version 0.2 ([Details](v0.2/README.md))
 - Add OTA Function
 - Optimized file structure
