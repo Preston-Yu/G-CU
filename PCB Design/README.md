@@ -1,5 +1,5 @@
 # G-CU PCB
-## v 0.0 -> v 0.1 (Direct correction on board)
+## v 1.0 -> v 1.1 (Direct correction on board)
 - IMU Sensor(BMX160) U13 PIN1 has been changed to NOC(Not Connected).
 ## v 0.1 -> v 1.0 (New board)
 - New Connector U10, U11 has been redesigned 
