@@ -2,7 +2,7 @@
 ## v 1.0 -> v 1.1 (Direct correction on board)
 - IMU Sensor(BMX160) U13 PIN1 has been changed to NOC(Not Connected).
 ## v 0.1 -> v 1.0 (New board)
-- New Connector U10, U11 has been re-designed 
+- New Connector U10, U11 has been re-designed.
 - IMU Sensor(BMX160) U13 has been added.
 - Switch SW3 has been changed to small size.
 - Battery Case BT1 has been removed.
