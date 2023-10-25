@@ -1,7 +1,7 @@
 # G-CU PCB
 ## v 1.0 -> v 1.1 (Direct correction on board)
 - IMU Sensor(BMX160) U13 PIN1 has been changed to NOC(Not Connected).
-## v 1.0 -> v 1.0.R (Direct correction on board)
+## v 1.0 -> v 1.0.R (Remove RTC Chip Version)(Direct correction on board)
 = Remove the RTC Chip to solve the I2C Address Conflict.
 ## v 0.1 -> v 1.0 (New board)
 - New Connector U10, U11 has been re-designed.
