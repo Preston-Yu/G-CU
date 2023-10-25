@@ -143,7 +143,12 @@
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
 
 ## Attention
-Due to issues such as hardware design, the following matters need to be noted.(Only For board v1.0 or v1.1)
+### Only For board v1.0
+Due to I2C Address Conflict, the following matters need to be noted.
+ - If you want to use IMU Sensor, board v1.0 must update to [v1.1](PCB=Design/README.md) or remove the RTC chip.
+
+### Only For board v0.0 or v0.1
+Due to issues such as hardware design, the following matters need to be noted.
  - GPIO38 (In the middle of U11) cannot be used.
  - Switch status is negetive.
 
