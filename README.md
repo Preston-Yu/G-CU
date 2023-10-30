@@ -24,7 +24,7 @@
 
 
 
-## Data Format
+## Data Format(Little-endian)
 
 
 <table>
@@ -110,14 +110,11 @@
  </tr>
  <tr>
   <th colspan="4">Accelerometer_z</th>
-  <th colspan="2">DV</th>
   <th colspan="2">END</th>
  </tr>
  <tr>
   <td>0x0b</td>
   <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
   <td>0x0b</td>
   <td>0xb8</td>
   <td>0xa5</td>
@@ -137,19 +134,22 @@
 | Magnetometer_xyz  | 12           | Value of the Magnetometer_xyz(Float)  |
 | Gyroscope_xyz     | 12           | Value of the Gyroscope_xyz(Float)  |
 | Accelerometer_xyz | 12           | Value of the Accelerometer_xyz(Float)  |
-| DV                | 2            | Data Validation of the Pressure Sensors (CheckSum)  |
 | END               | 2            | Two 0xa5 ending the packet   |
 
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
 
 ## Attention
-### Only For board v1.0
+### For board v1.0
 Due to I2C Address Conflict, the following matters need to be noted.
  - If you want to use IMU Sensor, board v1.0 must update to [board v1.1](PCB%20Design/README.md) （Contact YU） or board v1.0.R.
  - If you choose to remove the RTC chip, you need to disable the RTC Function from [code v1.0](Arduino/README.md).
  - If you want to use the board v1.0(Don't use IMU Sensor), you can use the [code v0.2](Arduino/v0.2/README.md).
 
-### Only For board v0.0 or v0.1
+### For code v1.0
+Due to data structure, the following matters need to be noted.
+ - Now all data transfer changed to Little-endian.
+
+### For board v0.0 or v0.1
 Due to issues such as hardware design, the following matters need to be noted.
  - GPIO38 (In the middle of U11) cannot be used.
  - Switch status is negetive.
