@@ -111,6 +111,7 @@
  <tr>
   <th colspan="4">Accelerometer_z</th>
   <th colspan="2">END</th>
+  <th colspan="6"></th>
  </tr>
  <tr>
   <td>0x0b</td>
@@ -119,6 +120,7 @@
   <td>0xb8</td>
   <td>0xa5</td>
   <td>0xa5</td>
+  <th colspan="6"></th>
  </tr>
 </table>
 
@@ -147,7 +149,7 @@ Due to I2C Address Conflict, the following matters need to be noted.
 
 ### For code v1.0
 Due to data structure, the following matters need to be noted.
- - Now all data transfer changed to Little-endian.
+ - Now all data transmission changed to Little-endian.
 
 ### For board v0.0 or v0.1
 Due to issues such as hardware design, the following matters need to be noted.
