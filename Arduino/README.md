@@ -44,7 +44,8 @@ const bool start_flag = 1;
 const bool device_num_flag = 1;
 const bool sensors_num_flag = 1;
 const bool timestamp_flag = 1;
-const bool data_validation_flag = 1;
+const bool IMU_flag = 0;
+const bool data_validation_flag = 0;
 const bool end_flag = 1;
 ```
 
