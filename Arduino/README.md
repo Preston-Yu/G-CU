@@ -19,9 +19,9 @@ All system configuration variables except for definitions are in the [GCU.ino](v
 ### Device Setting
 ```cpp
 // Device Parameters
-const unsigned char device_number = 0x01;
-const unsigned char device_frequency = 10;
-// #define sample_delayms 100
+// If the device number is set to the default value of 0x00, the device will automatically convert the chip ID to the device number
+unsigned char device_number = 0x00; 
+const unsigned char device_frequency = 100;
 
 // Sensor Numbers
 const unsigned char sensors_rows_num = 1;
