@@ -26,7 +26,7 @@
 
 ## Data Format(Little-endian)
 
-###Four_Bytes_Sensors_Data
+### Four_Bytes_Sensors_Data
 <table>
  <tr>
   <th colspan="2">START</th>
@@ -122,7 +122,8 @@
   <th colspan="6"></th>
  </tr>
 </table>
-###Two_Bytes_Sensors_Data
+
+### Two_Bytes_Sensors_Data
 <table>
  <tr>
   <th colspan="2">START</th>
