@@ -26,7 +26,103 @@
 
 ## Data Format(Little-endian)
 
-
+###Four_Bytes_Sensors_Data
+<table>
+ <tr>
+  <th colspan="2">START</th>
+  <th>DN</th>
+  <th>SN</th>
+  <th colspan="4">TIME</th>
+  <th colspan="2">TIMEMS</th>
+  <th colspan="4">S_1</th>
+ </tr>
+ <tr>
+  <td>0x5a</td>
+  <td>0x5a</td>
+  <td>0x00</td>
+  <td>0x04</td>
+  <td>0x64</td>
+  <td>0xac</td>
+  <td>0xd6</td>
+  <td>0xe1</td>
+  <td>0x01</td>
+  <td>0xf4</td>
+  <td>0x30</td>
+  <td>0x8e</td>
+  <td>0x00</td>
+  <td>0x00</td>
+ </tr>
+ <tr>
+  <th colspan="4">S_...</th>
+  <th colspan="4">Magnetometer_x</th>
+  <th colspan="4">Magnetometer_y</th>
+ <tr>
+  <td colspan="4" align="center">...</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  
+  
+ </tr>
+ <tr>
+  <th colspan="4">Magnetometer_z</th>
+  <th colspan="4">Gyroscope_x</th>
+  <th colspan="4">Gyroscope_y</th>
+ </tr>
+ <tr>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+ </tr>
+ <tr>
+  <th colspan="4">Gyroscope_z</th>
+  <th colspan="4">Accelerometer_x</th>
+  <th colspan="4">Accelerometer_y</th>
+ </tr>
+ <tr>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+ </tr>
+ <tr>
+  <th colspan="4">Accelerometer_z</th>
+  <th colspan="2">END</th>
+  <th colspan="6"></th>
+ </tr>
+ <tr>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0x0b</td>
+  <td>0xb8</td>
+  <td>0xa5</td>
+  <td>0xa5</td>
+  <th colspan="6"></th>
+ </tr>
+</table>
+###Two_Bytes_Sensors_Data
 <table>
  <tr>
   <th colspan="2">START</th>
@@ -132,7 +228,7 @@
 | SN                | 1            | Total number of the Pressure Sensors      |
 | TIME              | 4            | Unix Time   |
 | TIMEMS            | 2            | Million Seconds     |
-| S_***x***         | 2            | Value of the Pressure Sensor NO. ***x***    |
+| S_***x***         | 4 or 2       | Value of the Pressure Sensor NO. ***x***    |
 | Magnetometer_xyz  | 12           | Value of the Magnetometer_xyz(Float)  |
 | Gyroscope_xyz     | 12           | Value of the Gyroscope_xyz(Float)  |
 | Accelerometer_xyz | 12           | Value of the Accelerometer_xyz(Float)  |
@@ -141,6 +237,14 @@
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
 
 ## Attention
+### For board v2.0.B
+Due to changes in IMU sensors and the removal of the RTC chip, the following matters need to be noted.
+- When using [code v2.0](Arduino/v2.0/README.md), the value of IMU_chip must set to GCU_BMI270_BMM150.
+- If you use [code v2.0](Arduino/v2.0/README.md), the value of RTC_chip must set to GCU_FLAG_OFF.
+- IF you need 2 bytes sensors data, please set the value of sensors_dataformat_define to Two_Bytes_Sensors_Data in [code v2.0](Arduino/v2.0/README.md).
+- It is not recommended to use versions of the code earlier than [code v2.0](Arduino/v2.0/README.md).
+
+
 ### For board v1.0
 Due to I2C Address Conflict, the following matters need to be noted.
  - If you want to use IMU Sensor, board v1.0 must update to [board v1.1](PCB%20Design/README.md) （Contact YU） or board v1.0.R.
