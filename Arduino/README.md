@@ -1,5 +1,10 @@
 # GCU-Code
 ## Update History
+### Version 2.0
+- Add data normalized calibration function.
+- Add new IMU and MI sensor measurement function.(Board v2.0 or above)(In this version also used old IMU)
+- Pressure sensor data format default set to Four_Bytes_Sensors_Data.(In this version also can set to Two_Bytes_Sensors_Data)
+- RTC Chip Function default set to OFF.(In this version also can set to ON(except Board v2.0 or above))
 ### Version 1.0 
 - Add IMU Sensor Data Measurement (Must using Board v1.1(including v1.0.R) or above)
 - Data transmission now uses little-endian byte order.
@@ -11,7 +16,8 @@
 - Add UDP Function
 
 ## Arduino Library
-[ESP32Time](https://www.arduinolibraries.info/libraries/esp32-time) By fbiego v2.0.2
+[ESP32Time](https://www.arduinolibraries.info/libraries/esp32-time) By fbiego v2.0.6
+[Arduino_BMI270_BMM150](https://github.com/arduino-libraries/Arduino_BMI270_BMM150) By Arduino v1.2.0
 
 ## System Configuration
 All system configuration variables except for definitions are in the [GCU.ino](v0.1/GCU.ino) file.
