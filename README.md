@@ -235,7 +235,7 @@
 | Accelerometer_xyz | 12           | Value of the Accelerometer_xyz(Float)  |
 | END               | 2            | Two 0xa5 ending the packet   |
 
-\* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
+\* The packet format can be customized by [changing the value of the function flag](Arduino/README.md#function_flag).
 
 ### IO port(board v2.0.B)
 | Left              | Right             |
@@ -247,7 +247,7 @@
 | GPIO5(GIN4)       | GPIO35            |
 | GPIO6(GIN5)       | GPIO36            |
 
-\* Please change the value of analogReadIO[] and SelectIO[] in [changing the value of the flag](Arduino/README.md#flag).
+\* Please change the value of analogReadIO[] and SelectIO[] in [Conector IO](Arduino/README.md#Conector IO).
 
 
 
