@@ -241,7 +241,7 @@
 ### For board v2.0.B
 Due to changes in IMU sensors and the removal of the RTC chip, the following matters need to be noted.
 - When using [code v2.0](Arduino/v2.0/README.md), the value of IMU_chip must set to GCU_BMI270_BMM150.
-- If you use [code v2.0](Arduino/v2.0/README.md), the value of RTC_chip must set to GCU_FLAG_OFF.
+- When using [code v2.0](Arduino/v2.0/README.md), the value of RTC_chip must set to GCU_FLAG_OFF.
 - IF you need 2 bytes sensors data, please set the value of sensors_dataformat_define to Two_Bytes_Sensors_Data in [code v2.0](Arduino/v2.0/README.md).
 - It is not recommended to use versions of the code earlier than [code v2.0](Arduino/v2.0/README.md).
 
