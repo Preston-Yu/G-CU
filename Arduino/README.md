@@ -43,16 +43,37 @@ const uint16_t port = 1337;
 const bool TCP_UDP_Flag = UDP;
 ```
 
-### Flag
+### Function Flag
 ```cpp
 // Data Format Function
-const bool start_flag = 1;
-const bool device_num_flag = 1;
-const bool sensors_num_flag = 1;
-const bool timestamp_flag = 1;
-const bool IMU_flag = 0;
-const bool data_validation_flag = 0;
-const bool end_flag = 1;
+const bool start_flag = GCU_FLAG_ON;
+const bool device_num_flag = GCU_FLAG_ON;
+const bool sensors_num_flag = GCU_FLAG_ON;
+const bool timestamp_flag = GCU_FLAG_ON;
+const bool IMU_flag = GCU_FLAG_ON;
+const bool end_flag = GCU_FLAG_ON;
+
+//sensors_dataformat: Four_Bytes_Sensors_Data or Two_Bytes_Sensors_Data
+// This option will removed in next version
+// Recommand change data format to four bytes
+#define sensors_dataformat_define Four_Bytes_Sensors_Data
+
+/*********Normalized calibration function flag**********/
+/*        If normalized_calibration is ON              */
+/*        Sensors Dataformat must be Four Bytes        */
+const bool normalized_calibration_flag = GCU_FLAG_OFF;
+const float normalized_calibration_max_factor = 0.2;
+const float normalized_calibration_min_factor = 0.2;
+
+
+//IMU Chip : GCU_BMI270_BMM150 or GCU_BMX160(old version)
+const bool IMU_chip = GCU_BMI270_BMM150;
+
+
+//RTC Chip
+const bool RTC_chip = GCU_FLAG_OFF;
+
+
 ```
 
 ### Deifine
@@ -62,8 +83,12 @@ The definition defines many hardware addresses and port mappings.
 Without changing the PCB, there is no need to change the defined content.
 
 ```cpp
+//System Define
+//! DONT NEED CHANGE
 #define GCU_SDA 48
 #define GCU_SCL 47
+#define GCU_LED_PIN 38
+#define GCU_RGB_BRIGHTNESS 20
 #define BQ32002_I2C_ADDRESS 0x68
 
 #define BQ32002_SECONDS_Register 0x00
@@ -73,4 +98,19 @@ Without changing the PCB, there is no need to change the defined content.
 #define BQ32002_DATE_Register 0x04
 #define BQ32002_MONTH_Register 0x05
 #define BQ32002_YEARS_Register 0x06
+
+#define TCP 1
+#define UDP 0
+
+#define GCU_FLAG_ON 1
+#define GCU_FLAG_OFF 0
+
+#define Four_Bytes_Sensors_Data 1
+#define Two_Bytes_Sensors_Data 0
+
+#define GCU_BMI270_BMM150 1
+#define GCU_BMX160 0
+
+#define normalized_calibration_method_peak 0x00
+#define normalized_calibration_method_mean 0x01
 ```
