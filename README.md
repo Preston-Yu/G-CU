@@ -252,6 +252,10 @@
 
 
 ## Attention
+### For code v2.0
+Due to changes in IMU sensor, the following matters need to be noted.
+ - New Library in Arduino must be installed, please check [Arduino Library](Arduino/README.md#arduino-library).
+
 ### For board v2.0.B
 Due to changes in IMU sensors and the removal of the RTC chip, the following matters need to be noted.
 - When using [code v2.0](Arduino/v2.0/README.md), the value of IMU_chip must set to GCU_BMI270_BMM150.
