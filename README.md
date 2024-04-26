@@ -237,8 +237,8 @@
 
 \* The packet format can be customized by [changing the value of the function flag](Arduino/README.md#function-flag).
 
-### IO port(board v2.0.B)
-| Left              | Right             |
+### IO port(Chip on top)(board v2.0.B)
+| Left(2 pin)       | Right(2 pin)      |
 | ----------------- | ----------------- |
 | GPIO1(GIN0)       | GPIO7(GIN6)       |
 | GPIO2(GIN1)       | GPIO19            |
