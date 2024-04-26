@@ -1,4 +1,9 @@
 # G-CU PCB
+## v 1.1 -> v 2.0.B (New board designed for insole sensor)
+- IMU Sensor(BMX160 9-Axis) U13 has been replaced by IMU Sensor(BMM270 6-Axis) U13.
+- RTC Chip(BQ32002D) U5 has been removed.
+- MI Sensor(BMM150) U14 has been added.
+- Connector U10, U11 has been replaced by new Connector H1, H2.
 ## v 1.0 -> v 1.1 (Direct correction on board)
 - IMU Sensor(BMX160) U13 PIN1 has been changed to NOC(Not Connected).
 ## v 1.0 -> v 1.0.R (Remove RTC Chip Version)(Direct correction on board)
