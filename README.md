@@ -237,6 +237,20 @@
 
 \* The packet format can be customized by [changing the value of the flag](Arduino/README.md#flag).
 
+### IO port(board v2.0.B)
+| Left              | Right             |
+| ----------------- | ----------------- |
+| GPIO1(GIN0)       | GPIO7(GIN6)       |
+| GPIO2(GIN1)       | GPIO19            |
+| GPIO3(GIN2)       | GPIO20            |
+| GPIO4(GIN3)       | GPIO21            |
+| GPIO5(GIN4)       | GPIO35            |
+| GPIO6(GIN5)       | GPIO36            |
+
+\* Please change the value of analogReadIO[] and SelectIO[] in [changing the value of the flag](Arduino/README.md#flag).
+
+
+
 ## Attention
 ### For board v2.0.B
 Due to changes in IMU sensors and the removal of the RTC chip, the following matters need to be noted.
