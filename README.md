@@ -247,7 +247,7 @@
 | GPIO5(GIN4)       | GPIO35            |
 | GPIO6(GIN5)       | GPIO36            |
 
-\* Please change the value of analogReadIO[] and SelectIO[] in [Conector IO](Arduino/README.md#Conector_IO).
+\* Please change the value of analogReadIO[] and SelectIO[] in [Conector IO](Arduino/README.md#conector_io).
 
 
 
