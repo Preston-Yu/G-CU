@@ -1,5 +1,9 @@
 # GCU-Code
 ## Update History
+### Version 2.1
+- Critical bug fix: Resolved a major issue that caused watchdog timer (WDT) resets when actual sensor read frequency dropped below the set frequency. **This is a fatal bug fix and updating is strongly recommended for all users.**
+- Optimized multi-sensor reading logic to significantly reduce latency.
+- Improved timing control and resource handling to prevent function congestion under low-frequency sampling scenarios.
 ### Version 2.0
 - Add data normalized calibration function.
 - Add new IMU and MI sensor measurement function.(Board v2.0 or above)(In this version also used old IMU)
@@ -14,6 +18,7 @@
 - Optimized file structure
 ### Version 0.1 ([Details](v0.1/README.md))
 - Add UDP Function
+
 
 ## Arduino Library
 [ESP32Time](https://www.arduinolibraries.info/libraries/esp32-time) By fbiego v2.0.6
