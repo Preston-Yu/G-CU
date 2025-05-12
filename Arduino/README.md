@@ -1,5 +1,7 @@
 # GCU-Code
 ## Update History
+### Version 2.2
+- Added new functions to support ESP32 official library version 3.0 and above.
 ### Version 2.1
 - Critical bug fix: Resolved a major issue that caused watchdog timer (WDT) resets when actual sensor read frequency dropped below the set frequency. **This is a fatal bug fix and updating is strongly recommended for all users.**
 - Optimized multi-sensor reading logic to significantly reduce latency.
