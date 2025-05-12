@@ -85,7 +85,7 @@ const bool RTC_chip = GCU_FLAG_OFF;
 ### Conector IO
 ```cpp
 // Define ADIO(sensor_rows) and SelectIO(sensor_columns)
-const int analogReadIO[]={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+const int analogReadIO[]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 17};
 const int SelectIO[]={18, 19, 20, 21, 35, 36, 37, 39, 40, 41, 42, 45};
 ```
 
