@@ -3,7 +3,7 @@
 ### Version 2.1
 - Critical bug fix: Resolved a major issue that caused watchdog timer (WDT) resets when actual sensor read frequency dropped below the set frequency. **This is a fatal bug fix and updating is strongly recommended for all users.**
 - Optimized multi-sensor reading logic to significantly reduce latency.
-- Improved timing control and resource handling to prevent function congestion under low-frequency sampling scenarios.
+- Fixed a data interpretation bug when using `Two_Bytes_Sensors_Data` format. **However, using `Four_Bytes_Sensors_Data` is still strongly recommended for best compatibility and precision.**
 ### Version 2.0
 - Add data normalized calibration function.
 - Add new IMU and MI sensor measurement function.(Board v2.0 or above)(In this version also used old IMU)
