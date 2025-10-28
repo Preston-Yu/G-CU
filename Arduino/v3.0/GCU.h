@@ -76,7 +76,6 @@ extern const char* serverIndex;
 
 //External Variable Declaration
 // Device Parameters
-extern uint8_t device_number;
 extern bool data_ready;
 extern const uint16_t device_frequency;
 extern const uint16_t calibration_duration;

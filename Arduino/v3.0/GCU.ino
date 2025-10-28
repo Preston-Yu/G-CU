@@ -16,8 +16,6 @@ Tools → Partition scheme → 选择 APP 分区 大于 1.4MB 的方案
 
 
 // Device Parameters
-// If the device number is set to the default value of 0x00, the device will automatically convert the chip ID to the device number
-uint8_t device_number = 0x00; 
 bool data_ready = false;
 const uint16_t device_frequency = 100;
 const uint16_t calibration_duration = 10000;
@@ -108,10 +106,10 @@ const int SelectIO[]={17, 18, 19, 20, 21, 35, 36, 37, 39, 40, 41, 42, 45};
 const unsigned char sensors_num = sensors_rows_num * sensors_columns_num;
 
 #if sensors_dataformat_define == Four_Bytes_Sensors_Data
-const unsigned int data_num = (start_flag + end_flag ) * 2 + sensors_num * 4 + device_num_flag + sensors_num_flag + timestamp_flag * 6 + IMU_flag * 4 * 3 * 3;
+const unsigned int data_num = (start_flag + end_flag ) * 2 + sensors_num * 4 + device_num_flag * 6 + sensors_num_flag + timestamp_flag * 6 + IMU_flag * 4 * 3 * 3;
 const bool sensors_dataformat = Four_Bytes_Sensors_Data;
 #else
-const unsigned int data_num = (start_flag + sensors_num + end_flag ) * 2 + device_num_flag + sensors_num_flag + timestamp_flag * 6 + IMU_flag * 4 * 3 * 3;
+const unsigned int data_num = (start_flag + sensors_num + end_flag ) * 2 + device_num_flag * 6 + sensors_num_flag + timestamp_flag * 6 + IMU_flag * 4 * 3 * 3;
 const bool sensors_dataformat = Two_Bytes_Sensors_Data;
 #endif
 
@@ -247,22 +245,23 @@ void setup() {
   }
 
   if(device_num_flag){
-    if(!device_number){
-      for(int i=0; i<17; i=i+8) {
-	    data[2] |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;
-      }
-      Serial.print("Chip ID: "); Serial.println(data[2]);
-      data_p += 1;
+    uint64_t mac = ESP.getEfuseMac(); // 64-bit MAC (低6字节有效)
+    for (int i = 0; i < 6; i++) {
+      data[2 + i] = (mac >> (8 * i)) & 0xFF;
     }
-    else{
-      data[2] = device_number;
-      data_p += 1;
+
+    Serial.print("MAC Address: ");
+    for (int i = 5; i >= 0; i--) {
+      Serial.printf("%02X", data[2 + i]);
+      if (i > 0) Serial.print(":");
     }
-    
+    Serial.println();
+    Serial.println(ESP.getEfuseMac(), HEX);
+    data_p += 6;
   }
 
   if(sensors_num_flag){
-    data[3] = sensors_num;
+    data[8] = sensors_num;
     data_p += 1;
   }
 
