@@ -1,1 +1,6 @@
-
+{
+  "model": "gcu-s3",
+  "latest": "3.1.1",
+  "url": "https://github.com/Preston-Yu/G-CU/releases/download/v3.1.1/gcu-s3-v3.1.1.bin",
+  "force": false
+}
