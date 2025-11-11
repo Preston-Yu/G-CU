@@ -2,9 +2,9 @@
     "devices": [
       {
         "model": "v2.2.c",
-        "latest": "3.1.1",
-        "url": "https://github.com/Preston-Yu/G-CU/releases/download/v3.1.1/gcu-22c-v3.1.1.bin",
-        "sha256": "7161a0fa529d1602544eb3c3624f889187a10d05362726f9017485428bab278f",
+        "latest": "4.0",
+        "url": "https://github.com/Preston-Yu/G-CU/releases/download/v4.0/gcu-22c-v4.0.bin",
+        "sha256": "d6e4ba3a45470a740d0ce19cc3cfdc90c166c92d5edab4d69afd480b076b5149",
       },
       {
         "model": "v2.2.b",
