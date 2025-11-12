@@ -2,15 +2,15 @@
     "devices": [
       {
         "model": "v2.2.c",
-        "latest": "4.0.2",
-        "url": "https://github.com/Preston-Yu/G-CU/releases/download/v4.0/gcu-22c-v4.0.2.bin",
-        "sha256": "c9078196ba87f86c6e1afdc898ab984050dd8caf91f3266fa3bf1ddf1f5e1cd0",
+        "latest": "4.0.3",
+        "url": "https://github.com/Preston-Yu/G-CU/releases/download/v4.0/gcu-22c-v4.0.3.bin",
+        "sha256": "75945ba9af9315ab65314e0ce0176fa055b7b359dd71b7518292de69f402ec26",
       },
       {
         "model": "v2.1",
-        "latest": "4.0.2",
-        "url": "https://github.com/Preston-Yu/G-CU/releases/download/v4.0/gcu-21-v4.0.2.bin",
-        "sha256": "4a981f459b035526e374b069c6221699909a7e9346dcaadb5c384b216473e9f9",
+        "latest": "4.0.3",
+        "url": "https://github.com/Preston-Yu/G-CU/releases/download/v4.0/gcu-21-v4.0.3.bin",
+        "sha256": "bdd04940a8d8000fd28856a95d01338d63ace96bb365d0c0593defd56b5bfe5f",
       }
     ]
 }
