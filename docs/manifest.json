@@ -4,13 +4,13 @@
         "model": "v2.2.c",
         "latest": "4.0.3",
         "url": "https://github.com/Preston-Yu/G-CU/releases/download/v4.0/gcu-22c-v4.0.3.bin",
-        "sha256": "75945ba9af9315ab65314e0ce0176fa055b7b359dd71b7518292de69f402ec26",
+        "sha256": "f54330c55cff06ff0e35f8e6442a7993226e268f41b5d490a61c67c64556c057",
       },
       {
         "model": "v2.1",
         "latest": "4.0.3",
         "url": "https://github.com/Preston-Yu/G-CU/releases/download/v4.0/gcu-21-v4.0.3.bin",
-        "sha256": "bdd04940a8d8000fd28856a95d01338d63ace96bb365d0c0593defd56b5bfe5f",
+        "sha256": "619089f6467509671f2001f12ddea7d6ad419851d5e3a481e5e7868575722a0e",
       }
     ]
 }
