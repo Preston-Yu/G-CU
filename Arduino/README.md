@@ -86,6 +86,10 @@ const float normalized_calibration_min_factor = 0.2;
 }
 ```
 
+1. `model` must match the firmware `kExpectedModel` (currently `v2.2.c`).
+2. `analog` and `select` arrays may only contain pins from that model's whitelist.
+3. The device replies with `{"status":"ok"}` on success or `{"status":"error","msg":"reason"}` on failure; valid payloads are saved to NVS.
+
 
 
 ### Deifine
