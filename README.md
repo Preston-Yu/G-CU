@@ -132,7 +132,8 @@ All multi-byte fields use little-endian ordering.
 \* The packet format can be customized by [changing the value of the function flag](Arduino/README.md#function-flag).
 
 ### IO port(Chip on top)
--(board v2.2.C)
+ - (board v2.2.C)
+
 | Left       | Right      |
 | ----------------- | ----------------- |
 | GPIO18      | GPIO17      |
@@ -148,7 +149,8 @@ All multi-byte fields use little-endian ordering.
 | GPIO42      | GPIO2(GIN1)            |
 | GPIO45      | GPIO1(GIN0)            |
 
--(board v2.0.B)
+ - (board v2.0.B)
+
 | Left(2 pin)       | Right(2 pin)      |
 | ----------------- | ----------------- |
 | GPIO1(GIN0)       | GPIO7(GIN6)       |
