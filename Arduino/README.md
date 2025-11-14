@@ -46,22 +46,16 @@ All system configuration variables except for definitions are in the [GCU.ino](v
 ### Device Setting
 ```cpp
 // Device Parameters
-// If the device number is set to the default value of 0x00, the device will automatically convert the chip ID to the device number
-unsigned char device_number = 0x00; 
-const unsigned char device_frequency = 100;
-
-// Sensor Numbers
-const unsigned char sensors_rows_num = 1;
-const unsigned char sensors_columns_num = 1;
+const uint16_t device_frequency = 100;
+const uint16_t calibration_duration = 10000;
+constexpr uint32_t kSensorServerPollIntervalMs = 50;
+constexpr uint32_t kUdpControlPollIntervalMs = 50;
 ```
 
 ### WiFi
 ```cpp
-const char* SSID       = "GCU-wifi";
-const char* password   = "12345678";
-const char* SeverIP = "192.168.1.101";
-const uint16_t port = 1337;
-const bool TCP_UDP_Flag = UDP;
+// Data Transfer Parameters
+const uint16_t port = 13250;
 ```
 
 ### Function Flag
@@ -74,10 +68,6 @@ const bool timestamp_flag = GCU_FLAG_ON;
 const bool IMU_flag = GCU_FLAG_ON;
 const bool end_flag = GCU_FLAG_ON;
 
-//sensors_dataformat: Four_Bytes_Sensors_Data or Two_Bytes_Sensors_Data
-// This option will removed in next version
-// Recommand change data format to four bytes
-#define sensors_dataformat_define Four_Bytes_Sensors_Data
 
 /*********Normalized calibration function flag**********/
 /*        If normalized_calibration is ON              */
@@ -85,22 +75,18 @@ const bool end_flag = GCU_FLAG_ON;
 const bool normalized_calibration_flag = GCU_FLAG_OFF;
 const float normalized_calibration_max_factor = 0.2;
 const float normalized_calibration_min_factor = 0.2;
-
-
-//IMU Chip : GCU_BMI270_BMM150 or GCU_BMX160(old version)
-const bool IMU_chip = GCU_BMI270_BMM150;
-
-
-//RTC Chip
-const bool RTC_chip = GCU_FLAG_OFF;
 ```
 
 ### Conector IO
-```cpp
-// Define ADIO(sensor_rows) and SelectIO(sensor_columns)
-const int analogReadIO[]={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 17};
-const int SelectIO[]={18, 19, 20, 21, 35, 36, 37, 39, 40, 41, 42, 45};
+```json
+{
+  "model": "v2.2.c",
+  "analog": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  "select": [17, 18, 19, 20, 21, 35, 36, 37, 39, 40, 41, 42, 45]
+}
 ```
+
+
 
 ### Deifine
 
@@ -115,28 +101,12 @@ Without changing the PCB, there is no need to change the defined content.
 #define GCU_SCL 47
 #define GCU_LED_PIN 38
 #define GCU_RGB_BRIGHTNESS 20
-#define BQ32002_I2C_ADDRESS 0x68
-
-#define BQ32002_SECONDS_Register 0x00
-#define BQ32002_MINUTES_Register 0x01
-#define BQ32002_CENT_HOURS_Register 0x02
-#define BQ32002_DAY_Register 0x03
-#define BQ32002_DATE_Register 0x04
-#define BQ32002_MONTH_Register 0x05
-#define BQ32002_YEARS_Register 0x06
-
-#define TCP 1
-#define UDP 0
 
 #define GCU_FLAG_ON 1
 #define GCU_FLAG_OFF 0
 
-#define Four_Bytes_Sensors_Data 1
-#define Two_Bytes_Sensors_Data 0
-
-#define GCU_BMI270_BMM150 1
-#define GCU_BMX160 0
-
 #define normalized_calibration_method_peak 0x00
 #define normalized_calibration_method_mean 0x01
+
+#define BOOTCNT_CLEAR_WINDOW_MS 5000
 ```
