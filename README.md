@@ -158,7 +158,7 @@ All multi-byte fields use little-endian ordering.
 | GPIO5(GIN4)       | GPIO35            |
 | GPIO6(GIN5)       | GPIO36            |
 
-\* Please change the value of analogReadIO[] and SelectIO[] in [Conector IO](Arduino/README.md#conector-io).
+\* Please change the value of analogReadIO and SelectIO in [IO Control TCP JSON](Arduino/README.md#conector-io).
 
 
 
