@@ -8,236 +8,147 @@
 
 | Indicator    | Status                         | Meaning                                            |
 | ------------ | ------------------------------ | -------------------------------------------------- |
-| LED1         | Red                            | System is powered on     |
+| mini LED1    | Red                            | System is powered on     |
 |              | Off                            | System is powered off    |
-| LED2         | Green                          | Battery is charging      |
+| mini LED2    | Green                          | Battery is charging      |
 |              | Off                            | Battery is fully charged / Battery not installed   |
-| RGB LED (U6) | Off                            | System is powered off / System is initializing     |
-|              | White                          | Unable to Init the IMU Sensor |
-|              | Red-Green-Blue (Cycle)         | System is starting / Low Battery     |
-|              | Red                            | Connecting to WiFi / Unable to connect to WiFi  |
-|              | Red (Blink)                    | Unable to set RTC     |
-|              | Cyan                           | Setting RTC using NTP Server    |
-|              | Cyan (Blink 3 Times)           | Unable to set RTC from NTP Server / Setting RTC using extern Chip(BQ32002)   |
-|              | Yellow                         | Waitting for transfer data / [TCP Mode]Waiting for connect to TCP Server |
-|              | Green                          | Transferring data   |
+| RGB LED (U6)   | Rainbow cycle                                  | Power-on animation that confirms the MCU and RGB driver are alive.                                        |
+| RGB LED (U6)   | Off                                            | Idle/connected state; turns off after Wi-Fi connects or OTA finishes successfully.                        |
+| RGB LED (U6)   | Solid White                                    | IMU initialization failed (BMI270/BMM150); firmware halts for manual intervention.                        |
+| RGB LED (U6)   | Solid Red                                      |  In BLE/SoftAP provisioning mode, waiting for credentials.                                                |
+| RGB LED (U6)   | Red blink (1 Hz)                               |  Still waiting for Wi-Fi credentials/connection during provisioning window.                               |
+| RGB LED (U6)   | Amber rapid blink → Amber solid                |  Wi-Fi connection timed out; device is about to reboot.                                                   |
+| RGB LED (U6)   | Cyan (blink 3 times per retry)                 | SNTP RTC sync retry in progress (no valid time yet).                                                      |
+| RGB LED (U6)   | Solid Amber                                             |  Sensor matrix configured, timers armed; system is ready/idle.                                            |
+| RGB LED (U6)   | Solid Hreen                                             |  `dataReceive()` has started streaming sensor data over UDP.                                              |
+| RGB LED (U6)   | Calibration palette (purple / magenta / blink)          |  Active only when `normalized_calibration_flag` is ON: purple = prep, magenta = sampling, blink = failure. |
+| RGB LED (U6)   | OTA palette (blue / purple / gradient / cyan / magenta) |  OTA lifecycle: blue = manifest, purple = preparing, gradient = download progress, cyan = success, magenta = error. |
+| RGB LED (U6)   | Reserved pink (`LedPalette::StreamSocketError`)         |  Reserved for future UDP/TCP error indications (not currently used).                                       |
 
 
 
-## Data Format(Little-endian)
+## Data Format
 
-### Four_Bytes_Sensors_Data
 <table>
- <tr>
-  <th colspan="2">START</th>
-  <th>DN</th>
-  <th>SN</th>
-  <th colspan="4">TIME</th>
-  <th colspan="2">TIMEMS</th>
-  <th colspan="4">S_1</th>
- </tr>
- <tr>
-  <td>0x5a</td>
-  <td>0x5a</td>
-  <td>0x00</td>
-  <td>0x04</td>
-  <td>0x64</td>
-  <td>0xac</td>
-  <td>0xd6</td>
-  <td>0xe1</td>
-  <td>0x01</td>
-  <td>0xf4</td>
-  <td>0x30</td>
-  <td>0x8e</td>
-  <td>0x00</td>
-  <td>0x00</td>
- </tr>
- <tr>
-  <th colspan="4">S_...</th>
-  <th colspan="4">Magnetometer_x</th>
-  <th colspan="4">Magnetometer_y</th>
- <tr>
-  <td colspan="4" align="center">...</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  
-  
- </tr>
- <tr>
-  <th colspan="4">Magnetometer_z</th>
-  <th colspan="4">Gyroscope_x</th>
-  <th colspan="4">Gyroscope_y</th>
- </tr>
- <tr>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
- </tr>
- <tr>
-  <th colspan="4">Gyroscope_z</th>
-  <th colspan="4">Accelerometer_x</th>
-  <th colspan="4">Accelerometer_y</th>
- </tr>
- <tr>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
- </tr>
- <tr>
-  <th colspan="4">Accelerometer_z</th>
-  <th colspan="2">END</th>
-  <th colspan="6"></th>
- </tr>
- <tr>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <th colspan="6"></th>
- </tr>
+  <tr>
+    <th colspan="2">START<br>(optional)</th>
+    <th colspan="6">Device Number (MAC)</th>
+    <th>SN</th>
+    <th colspan="4">Epoch Time</th>
+    <th colspan="2">Millis</th>
+  </tr>
+  <tr>
+    <td>0x5A</td>
+    <td>0x5A</td>
+    <td>MAC[0]</td>
+    <td>MAC[1]</td>
+    <td>MAC[2]</td>
+    <td>MAC[3]</td>
+    <td>MAC[4]</td>
+    <td>MAC[5]</td>
+    <td>SN[0]</td>
+    <td>T[0]</td>
+    <td>T[1]</td>
+    <td>T[2]</td>
+    <td>T[3]</td>
+    <td>ms[0]</td>
+    <td>ms[1]</td>
+  </tr>
+  <tr>
+    <th colspan="4">Sensor #1</th>
+    <th colspan="4">Sensor #2</th>
+    <th colspan="4">…</th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td colspan="4" align="center">S₁[0..3]</td>
+    <td colspan="4" align="center">S₂[0..3]</td>
+    <td colspan="4" align="center">…</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <th colspan="4">Magnetometer X</th>
+    <th colspan="4">Magnetometer Y</th>
+    <th colspan="4">Magnetometer Z</th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td>Mx[0]</td><td>Mx[1]</td><td>Mx[2]</td><td>Mx[3]</td>
+    <td>My[0]</td><td>My[1]</td><td>My[2]</td><td>My[3]</td>
+    <td>Mz[0]</td><td>Mz[1]</td><td>Mz[2]</td><td>Mz[3]</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <th colspan="4">Gyroscope X</th>
+    <th colspan="4">Gyroscope Y</th>
+    <th colspan="4">Gyroscope Z</th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td>Gx[0]</td><td>Gx[1]</td><td>Gx[2]</td><td>Gx[3]</td>
+    <td>Gy[0]</td><td>Gy[1]</td><td>Gy[2]</td><td>Gy[3]</td>
+    <td>Gz[0]</td><td>Gz[1]</td><td>Gz[2]</td><td>Gz[3]</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <th colspan="4">Accelerometer X</th>
+    <th colspan="4">Accelerometer Y</th>
+    <th colspan="4">Accelerometer Z</th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td>Ax[0]</td><td>Ax[1]</td><td>Ax[2]</td><td>Ax[3]</td>
+    <td>Ay[0]</td><td>Ay[1]</td><td>Ay[2]</td><td>Ay[3]</td>
+    <td>Az[0]</td><td>Az[1]</td><td>Az[2]</td><td>Az[3]</td>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <th colspan="2">END<br>(optional)</th>
+    <th colspan="12"></th>
+  </tr>
+  <tr>
+    <td>0xA5</td>
+    <td>0xA5</td>
+    <td colspan="12"></td>
+  </tr>
 </table>
 
-### Two_Bytes_Sensors_Data
-<table>
- <tr>
-  <th colspan="2">START</th>
-  <th>DN</th>
-  <th>SN</th>
-  <th colspan="4">TIME</th>
-  <th colspan="2">TIMEMS</th>
-  <th colspan="2">S_1</th>
- </tr>
- <tr>
-  <td>0x5a</td>
-  <td>0x5a</td>
-  <td>0x00</td>
-  <td>0x04</td>
-  <td>0x64</td>
-  <td>0xac</td>
-  <td>0xd6</td>
-  <td>0xe1</td>
-  <td>0x01</td>
-  <td>0xf4</td>
-  <td>0x30</td>
-  <td>0x8e</td>
- </tr>
- <tr>
-  <th colspan="2">S_2</th>
-  <th colspan="2">S_...</th>
-  <th colspan="4">Magnetometer_x</th>
-  <th colspan="4">Magnetometer_y</th>
- <tr>
-  <td>0x31</td>
-  <td>0x66</td>
-  <td colspan="2" align="center">...</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  
-  
- </tr>
- <tr>
-  <th colspan="4">Magnetometer_z</th>
-  <th colspan="4">Gyroscope_x</th>
-  <th colspan="4">Gyroscope_y</th>
- </tr>
- <tr>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
- </tr>
- <tr>
-  <th colspan="4">Gyroscope_z</th>
-  <th colspan="4">Accelerometer_x</th>
-  <th colspan="4">Accelerometer_y</th>
- </tr>
- <tr>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
- </tr>
- <tr>
-  <th colspan="4">Accelerometer_z</th>
-  <th colspan="2">END</th>
-  <th colspan="6"></th>
- </tr>
- <tr>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0x0b</td>
-  <td>0xb8</td>
-  <td>0xa5</td>
-  <td>0xa5</td>
-  <th colspan="6"></th>
- </tr>
-</table>
 
 ### Fields of the Data Packet
 | Field Name        | Size (Bytes) | Description                                         |
 | ----------------- | ------------ | -------------------------------------------------- |
 | START             | 2            | Two 0x5a identifying the packet    |
-| DN                | 1            | Device NO.    |
+| DN                | 6            | Device NO.    |
 | SN                | 1            | Total number of the Pressure Sensors      |
 | TIME              | 4            | Unix Time   |
 | TIMEMS            | 2            | Million Seconds     |
-| S_***x***         | 4 or 2       | Value of the Pressure Sensor NO. ***x***    |
+| S_***x***         | 4            | Value of the Pressure Sensor NO. ***x***    |
 | Magnetometer_xyz  | 12           | Value of the Magnetometer_xyz(Float)  |
 | Gyroscope_xyz     | 12           | Value of the Gyroscope_xyz(Float)  |
 | Accelerometer_xyz | 12           | Value of the Accelerometer_xyz(Float)  |
 | END               | 2            | Two 0xa5 ending the packet   |
 
+All multi-byte fields use little-endian ordering.
 \* The packet format can be customized by [changing the value of the function flag](Arduino/README.md#function-flag).
 
-### IO port(Chip on top)(board v2.0.B)
+### IO port(Chip on top)
+-(board v2.2.C)
+| Left       | Right      |
+| ----------------- | ----------------- |
+| GPIO18      | GPIO17      |
+| GPIO29      | GPIO11(GIN10)            |
+| GPIO20       | GPIO10(GIN9)            |
+| GPIO21       | GPIO9(GIN8)            |
+| GPIO35       | GPIO8(GIN7)           |
+| GPIO36      | GPIO7(GIN6)            |
+| GPIO37      | GPIO6(GIN5)            |
+| GPIO39      | GPIO5(GIN4)            |
+| GPIO40      | GPIO4(GIN3)            |
+| GPIO41      | GPIO3(GIN2)            |
+| GPIO42      | GPIO2(GIN1)            |
+| GPIO45      | GPIO1(GIN0)            |
+
+-(board v2.0.B)
 | Left(2 pin)       | Right(2 pin)      |
 | ----------------- | ----------------- |
 | GPIO1(GIN0)       | GPIO7(GIN6)       |
