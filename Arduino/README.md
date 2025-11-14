@@ -1,5 +1,18 @@
 # GCU-Code
 ## Update History
+### Version 4.0.7（Latest）
+- Added Bluetooth provisioning for Wi-Fi setup via the official ESP mobile app.
+- Added reset function: power-cycling the device 5 times clears Wi-Fi settings.
+- Added TCP-based configuration control. IO pins can now be toggled via TCP commands, and the configuration is saved to NVS until modified by another command or reset.
+- Added factory reset functionality. Power-cycling the device 10 times will now clear all NVS-stored configurations.
+- Reworked OTA update system. The device now automatically connects to the network, checks for new firmware, and updates itself.
+- Added UDP unicast mode. Packet loss is significantly reduced by unicasting to subscribed devices, while falling back to broadcast when no subscriptions are active.
+- Updated the device serial number (DN) field in data packets. DN is now fixed and derived from the internal chip ID, with its length changed from 1 byte to 6 bytes.
+- Optimized sensor scanning algorithms, greatly increasing the maximum operating frequency (from 50 Hz to 80 Hz with all 143 sensors enabled).
+- Removed support for legacy chips BQ32002 and BMI160.
+- Removed the TCP data transmission feature.
+- Removed the optional 2-byte sensor data format.
+- Added sensor calibration functionality with two available calibration algorithms (BETA).
 ### Version 2.2
 - Added new functions to support ESP32 official library version 3.0 and above.
 ### Version 2.1
