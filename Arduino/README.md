@@ -78,6 +78,7 @@ const float normalized_calibration_min_factor = 0.2;
 ```
 
 ### Conector IO
+TCP Port = 22345
 ```json
 {
   "model": "v2.2.c",
