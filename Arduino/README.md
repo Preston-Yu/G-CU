@@ -1,6 +1,6 @@
 # GCU-Code
 ## Update History
-### Version 4.0.7（Latest）
+### Version 4.0.8（Latest）
 - Added Bluetooth provisioning for Wi-Fi setup via the official ESP mobile app.
 - Added reset function: power-cycling the device 5 times clears Wi-Fi settings.
 - Added TCP-based configuration control. IO pins can now be toggled via TCP commands, and the configuration is saved to NVS until modified by another command or reset.
