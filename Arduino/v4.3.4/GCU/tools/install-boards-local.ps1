@@ -28,9 +28,3 @@ foreach ($versionDir in $versions) {
   Copy-Item -Force -Path $Source -Destination $target
   Write-Host "Installed boards.local.txt -> $target"
 }
-
-Write-Host ""
-Write-Host "Done. Restart Arduino IDE to see the Hardware Model menu."
-if ($Pause) {
-  Read-Host "Press Enter to exit" | Out-Null
-}
